@@ -2,6 +2,7 @@
   "name": "meta-dine",
   "main": "expo-router/entry",
   "version": "1.0.0",
+  "packageManager": "pnpm@12.1.0",
   "dependencies": {
     "@expo/ui": "~57.0.15",
     "expo": "~57.0.19",

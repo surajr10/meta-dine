@@ -31,12 +31,16 @@ yarn-error.*
 *.pem
 
 # local env files
+.env
 .env*.local
 
 # typescript
 *.tsbuildinfo
 
-example
+/example
+
+# captured Google/Yelp/Beli API responses — not ours to redistribute
+src/data/example/
 
 # generated native folders
 /ios

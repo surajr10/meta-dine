@@ -11,7 +11,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `pnpm exec tsc --noEmit` — typecheck.
 - `pnpm exec expo install <pkg>` (add `--dev` for devDependencies) — add dependencies so Expo resolves SDK 57-compatible versions; don't `pnpm add` directly.
 - `pnpm lint` (`expo lint`) has no ESLint config committed yet and will prompt to bootstrap one.
-- `pnpm reset-project` is broken — it points at `./scripts/reset-project.js`, which only exists under `example/scripts/`.
 - No test runner is configured.
 
 ## Architecture

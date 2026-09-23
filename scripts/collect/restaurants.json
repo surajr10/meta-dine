@@ -3,32 +3,48 @@
     "slug": "rooster-and-rice",
     "name": "Rooster & Rice",
     "city": "San Francisco, CA",
-    "note": "125 Kearny St location — there are multiple Rooster & Rice locations in SF, no Polk St one exists"
+    "address": "125 Kearny St, San Francisco, CA 94108, USA",
+    "googlePlaceId": "ChIJO_3ZqImAhYAROCvoc0HjBbw",
+    "yelpBusinessId": "UqTdHGPBx730m5D51EOI6Q"
   },
   {
     "slug": "zuni-cafe",
     "name": "Zuni Café",
-    "city": "San Francisco, CA"
+    "city": "San Francisco, CA",
+    "address": "1658 Market St, San Francisco, CA 94102, USA",
+    "googlePlaceId": "ChIJO7u9q5-AhYARiSSXyWv9eJ8",
+    "yelpBusinessId": "oqsu3pKpgRMGHj9QItsx0A"
   },
   {
     "slug": "state-bird-provisions",
     "name": "State Bird Provisions",
-    "city": "San Francisco, CA"
+    "city": "San Francisco, CA",
+    "address": "1529 Fillmore St, San Francisco, CA 94115, USA",
+    "googlePlaceId": "ChIJQ7kGpLmAhYARKeCe2pDobWk",
+    "yelpBusinessId": "QZQGRJZ4bZCmNoXjs3z1XQ"
   },
   {
     "slug": "swan-oyster-depot",
     "name": "Swan Oyster Depot",
-    "city": "San Francisco, CA"
+    "city": "San Francisco, CA",
+    "address": "1517 Polk St, San Francisco, CA 94109, USA",
+    "googlePlaceId": "ChIJEdGJjp6AhYAR1LtP-ptLrOg",
+    "yelpBusinessId": "eI0DpD2Xx8hFlk7eAdFCqQ"
   },
   {
     "slug": "turtle-tower",
     "name": "Turtle Tower",
     "city": "San Francisco, CA",
-    "note": "3145 Fillmore St (Marina) location — there is also a FiDi location"
+    "address": "3145 Fillmore St, San Francisco, CA 94123, USA",
+    "googlePlaceId": "ChIJvf4o3cWBhYARifT3jjhwDkA",
+    "yelpBusinessId": "13CiadtGCN2FzekGAKhxMQ"
   },
   {
     "slug": "sotto-mare",
     "name": "Sotto Mare",
-    "city": "San Francisco, CA"
+    "city": "San Francisco, CA",
+    "address": "552 Green St, San Francisco, CA 94133, USA",
+    "googlePlaceId": "ChIJQfYyVvGAhYARJVwoboB1WKQ",
+    "yelpBusinessId": "8dUaybEPHsZMgr1iKgqgMQ"
   }
 ]

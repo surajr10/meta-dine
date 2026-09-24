@@ -1,7 +1,13 @@
 export type RatingSource = 'google' | 'yelp' | 'beli';
 
 export type SourceRating =
-  | { status: 'ok'; score: number; maxScore: number; reviewCount: number | null }
+  | {
+      status: 'ok';
+      score: number;
+      maxScore: number;
+      reviewCount: number | null;
+      recScore?: number;
+    }
   | { status: 'not_found' };
 
 export type Restaurant = {

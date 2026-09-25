@@ -1,13 +1,48 @@
-import { useState } from "react";
-import { FlatList, Text, TextInput, View } from "react-native";
+import { useRef, useState } from "react";
+import {
+  ActivityIndicator,
+  FlatList,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 import { RestaurantRow } from "@/components/restaurant-row";
-import { searchRestaurants } from "@/data/restaurants";
+import { searchGooglePlaces } from "@/data/google";
+import type { RestaurantSummary } from "@/types/restaurant";
+
+type Status = "idle" | "loading" | "error" | "done";
 
 export default function Index() {
   const [query, setQuery] = useState("");
-  const hasQuery = query.trim() !== "";
-  const results = hasQuery ? searchRestaurants(query) : [];
+  const [status, setStatus] = useState<Status>("idle");
+  const [results, setResults] = useState<RestaurantSummary[]>([]);
+  const latestRequest = useRef(0);
+
+  function handleChangeText(text: string) {
+    setQuery(text);
+    if (text.trim() === "") {
+      latestRequest.current++;
+      setStatus("idle");
+    }
+  }
+
+  async function handleSubmit() {
+    const term = query.trim();
+    if (term === "") return;
+
+    const request = ++latestRequest.current;
+    setStatus("loading");
+    try {
+      const found = await searchGooglePlaces(term);
+      if (request !== latestRequest.current) return;
+      setResults(found);
+      setStatus("done");
+    } catch {
+      if (request !== latestRequest.current) return;
+      setStatus("error");
+    }
+  }
 
   return (
     <View className="flex-1 bg-white dark:bg-black">
@@ -16,22 +51,30 @@ export default function Index() {
         placeholder="Search restaurants"
         placeholderTextColor="#9ca3af"
         value={query}
-        onChangeText={setQuery}
+        onChangeText={handleChangeText}
+        onSubmitEditing={handleSubmit}
+        returnKeyType="search"
         autoCapitalize="none"
         autoCorrect={false}
         clearButtonMode="while-editing"
       />
       <FlatList
-        data={results}
+        data={status === "done" ? results : []}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <RestaurantRow restaurant={item} />}
         keyboardShouldPersistTaps="handled"
         ListEmptyComponent={
-          <Text className="mt-8 px-6 text-center text-base text-gray-500 dark:text-gray-400">
-            {hasQuery
-              ? "No restaurants found."
-              : "Search for a restaurant to compare its Google, Yelp, and Beli ratings side by side."}
-          </Text>
+          status === "loading" ? (
+            <ActivityIndicator className="mt-8" />
+          ) : (
+            <Text className="mt-8 px-6 text-center text-base text-gray-500 dark:text-gray-400">
+              {status === "error"
+                ? "Something went wrong. Check your connection and try again."
+                : status === "done"
+                  ? "No restaurants found."
+                  : "Search for a restaurant to compare its Google, Yelp, and Beli ratings side by side."}
+            </Text>
+          )
         }
       />
     </View>

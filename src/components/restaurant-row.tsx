@@ -1,9 +1,9 @@
 import { Link } from "expo-router";
 import { Pressable, Text } from "react-native";
 
-import type { Restaurant } from "@/types/restaurant";
+import type { RestaurantSummary } from "@/types/restaurant";
 
-export function RestaurantRow({ restaurant }: { restaurant: Restaurant }) {
+export function RestaurantRow({ restaurant }: { restaurant: RestaurantSummary }) {
   return (
     <Link
       href={{ pathname: "/restaurant/[id]", params: { id: restaurant.id } }}

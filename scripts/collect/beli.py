@@ -61,7 +61,7 @@ def search(search_url: str, name: str, user_id: str, city: str, latitude: float,
     response.raise_for_status()
     return response.json()
 
-def get_rec_score(rec_score_url: str, user_id: str, business_id: str, headers: dict) -> float:
+def get_rec_score_and_rank_count(rec_score_url: str, user_id: str, business_id: str, headers: dict) -> tuple[float, int]:
     response = requests.get(
         rec_score_url,
         headers=headers,
@@ -69,7 +69,8 @@ def get_rec_score(rec_score_url: str, user_id: str, business_id: str, headers: d
         timeout=10,
     )
     response.raise_for_status()
-    return response.json().get("results", {}).get("expected_percentile", None)
+    data = response.json().get("results", {})
+    return (data.get("expected_percentile", None), data.get("rank_count", None))
 
 def get_avg_score(avg_score_url: str, business_id: str, headers: dict) -> float:
     response = requests.get(
@@ -131,7 +132,7 @@ def main() -> None:
             business_id = item.get("business", "")
             if not business_id:
                 continue
-            item["rec_score"] = get_rec_score(rec_score_url, user_id, business_id, headers)
+            item["rec_score"], item["rank_count"] = get_rec_score_and_rank_count(rec_score_url, user_id, business_id, headers)
             item["avg_score"] = get_avg_score(avg_score_url, business_id, headers)
         
         out_path = OUT_DIR / f"{restaurant['slug']}.json"

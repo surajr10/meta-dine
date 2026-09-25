@@ -44,6 +44,7 @@ type BeliCapture = {
     place_id: string;
     avg_score: number | null;
     rec_score: number | null;
+    rank_count: number | null;
   }[];
 };
 
@@ -123,7 +124,7 @@ function buildRestaurant(source: (typeof sources)[number]): Restaurant {
               status: "ok",
               score: beli.avg_score,
               maxScore: 10,
-              reviewCount: null,
+              reviewCount: beli.rank_count,
               recScore: beli.rec_score ?? undefined,
             },
     },

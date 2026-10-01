@@ -10,11 +10,14 @@ export type SourceRating =
     }
   | { status: 'not_found' };
 
-export type Restaurant = {
+export type RestaurantSummary = {
   id: string;
   name: string;
   address: string;
   lat: number;
   lng: number;
+};
+
+export type Restaurant = RestaurantSummary & {
   ratings: Record<RatingSource, SourceRating>;
 };
